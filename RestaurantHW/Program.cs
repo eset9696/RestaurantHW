@@ -1,3 +1,6 @@
+using RestaurantHW.Services;
+using RestaurantHW.Services.Implementations;
+
 namespace RestaurantHW
 {
     public class Program
@@ -8,6 +11,9 @@ namespace RestaurantHW
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+
+            builder.Services.AddScoped<IMenuRestaurantService, MenuRestaurantService>();
 
             var app = builder.Build();
 

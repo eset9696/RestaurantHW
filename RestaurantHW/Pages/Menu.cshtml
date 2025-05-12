@@ -1,8 +1,29 @@
 ﻿@page
+@using RestaurantHW.Models
 @model RestaurantHW.Pages.MenuModel
 @{
 }
 <h2>Меню</h2>
-<div>
-	<span>Меню на этапе разработки, приходите позже!</span>
-</div>
+<table>
+	<thead>
+		<tr>
+			<th>Название блюда</th>
+			<th>Описание</th>
+			<th>Цена</th>
+			<th>Вес</th>
+		</tr>
+	</thead>
+    <tbody>
+		
+			@foreach (MenuItem item in Model.Menu)
+			{
+			<tr>
+				<td>@item.Name</td>	
+				<td>@item.Description</td>
+				<td>@item.Price $</td>
+				<td>@item.Weight</td>
+ 			</tr>
+			}
+	</tbody>
+	
+</table>
