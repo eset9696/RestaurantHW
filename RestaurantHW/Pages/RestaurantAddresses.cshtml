@@ -1,0 +1,11 @@
+﻿@page
+@model RestaurantHW.Pages.RestaurantAddressesModel
+@{
+}
+<h3>Адреса наших заведений:</h3>
+<ol>
+	@foreach(string restaurant in Model.Restaurants)
+	{
+		<li>@restaurant</li>
+	}
+</ol>

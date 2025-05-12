@@ -1,3 +1,6 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using RestaurantHW.Services;
 using RestaurantHW.Services.Implementations;
 
@@ -12,8 +15,20 @@ namespace RestaurantHW
             // Add services to the container.
             builder.Services.AddRazorPages();
 
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
-            builder.Services.AddScoped<IMenuRestaurantService, MenuRestaurantService>();
+            builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+            {
+                containerBuilder.RegisterType<MenuRestaurantService>()
+                                .As<IMenuRestaurantService>()
+                                .InstancePerLifetimeScope();
+                containerBuilder.RegisterType<RestaurantAddressesService>()
+                                .As<IRestaurantAddressesService>()
+                                .InstancePerLifetimeScope();
+
+            });
+
+            //builder.Services.AddScoped<IMenuRestaurantService, MenuRestaurantService>();
 
             var app = builder.Build();
 

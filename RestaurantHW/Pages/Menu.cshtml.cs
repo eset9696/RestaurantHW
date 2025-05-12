@@ -9,7 +9,7 @@ namespace RestaurantHW.Pages
     {
         private readonly IMenuRestaurantService _menuRestaurantService;
 
-        public List<MenuItem> Menu { get; private set; }
+        public List<MenuItem>? Menu { get; private set; }
 
         public MenuModel(IMenuRestaurantService menuRestaurantService)
         {
